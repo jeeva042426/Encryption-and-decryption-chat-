@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Secure Cipher Chat</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+  <div class="main-container">
+    <aside class="sidebar">
+      <div class="logo">🔐 Secret Chat</div>
+      <nav>
+        <ul>
+          <li><button class="menu-btn" onclick="newChat()">New Chat</button></li>
+          <li><button class="menu-btn" onclick="toggleSaved()">Saved</button></li>
+          <li><button class="menu-btn" onclick="toggleSettings()">Settings</button></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <section class="chat-area">
+      <header>
+        <h1 id="chatTitle">Secret Cipher Chat</h1>
+      </header>
+
+      <form method="post" action="/" class="form-container">
+        <textarea name="message" placeholder="Type your message here..." required></textarea>
+
+        <div class="select-row">
+          <select name="mode" required>
+            <option value="encrypt">Encrypt</option>
+            <option value="decrypt">Decrypt</option>
+          </select>
+
+          <select name="cipher" id="cipherSelect" required onchange="toggleKeyFields()">
+            <option value="rail_fence">Rail Fence Cipher</option>
+            <option value="row_transposition">Row Transposition Cipher</option>
+          </select>
+        </div>
+
+        <input type="number" id="railsField" name="rails" placeholder="Enter number of rails" min="2" />
+        <input type="text" id="keyField" name="key" placeholder="Enter key for transposition" />
+
+        <button type="submit">Submit</button>
+      </form>
+
+      <div id="chatOutputArea">
+        {% if result %}
+        <div class="output">
+          <h3>Chat Result</h3>
+          <p>{{ result }}</p>
+        </div>
+        {% endif %}
+      </div>
+
+      {% if result %}
+      <button class="save-btn" onclick="saveCurrentChat()">Save</button>
+      {% endif %}
+
+      <div id="savedChats" class="saved-chats hidden">
+        <h3>Saved Chats</h3>
+        <ul id="savedList"></ul>
+      </div>
+
+      <div id="settingsPanel" class="settings-panel hidden">
+        <h3>Settings</h3>
+        <input type="text" placeholder="Rename Chat" id="renameInput" />
+        <button onclick="renameChat()">Rename</button>
+        <button onclick="deleteChat()" class="delete-btn">Delete Chat</button>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    let currentChat = [];
+
+    function toggleKeyFields() {
+      const cipher = document.getElementById("cipherSelect").value;
+      document.getElementById("railsField").style.display = cipher === "rail_fence" ? "block" : "none";
+      document.getElementById("keyField").style.display = cipher === "row_transposition" ? "block" : "none";
+    }
+
+    function newChat() {
+      currentChat = [];
+      document.querySelector('textarea[name="message"]').value = "";
+      document.getElementById("chatTitle").textContent = "New Chat";
+      document.getElementById("chatOutputArea").innerHTML = "";
+      document.getElementById("renameInput").value = "";
+    }
+
+    function toggleSaved() {
+      document.getElementById("savedChats").classList.toggle("hidden");
+    }
+
+    function toggleSettings() {
+      document.getElementById("settingsPanel").classList.toggle("hidden");
+    }
+
+    function saveCurrentChat() {
+      const outputArea = document.getElementById("chatOutputArea").innerHTML;
+      if (outputArea.trim() === "") return;
+
+      const list = document.getElementById("savedList");
+      const li = document.createElement("li");
+      li.innerHTML = outputArea;
+      list.appendChild(li);
+      alert("Chat saved!");
+    }
+
+    function renameChat() {
+      const newName = document.getElementById("renameInput").value.trim();
+      if (newName !== "") {
+        document.getElementById("chatTitle").textContent = newName;
+        alert("Chat renamed to: " + newName);
+      }
+    }
+
+    function deleteChat() {
+      document.getElementById("chatOutputArea").innerHTML = "";
+      document.getElementById("chatTitle").textContent = "Secure Cipher Chat";
+      alert("Chat deleted!");
+    }
+
+    window.onload = toggleKeyFields;
+  </script>
+</body>
+</html>

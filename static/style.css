@@ -1,0 +1,227 @@
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f4f6fa;
+  color: #333;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-container {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+}
+
+/* Sidebar styling */
+.sidebar {
+  width: 220px;
+  background-color: #1f2937;
+  color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.sidebar .logo {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.sidebar nav ul {
+  list-style-type: none;
+}
+
+.sidebar .menu-btn {
+  background-color: #374151;
+  border: none;
+  color: white;
+  padding: 12px;
+  width: 100%;
+  text-align: left;
+  margin-bottom: 10px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.3s;
+}
+
+.sidebar .menu-btn:hover {
+  background-color: #4b5563;
+}
+
+/* Chat area */
+.chat-area {
+  flex: 1;
+  padding: 30px;
+  background-color: #fff;
+  overflow-y: auto;
+  position: relative;
+}
+
+.chat-area header {
+  margin-bottom: 20px;
+}
+
+.chat-area h1 {
+  font-size: 28px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+  padding: 12px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+}
+
+.select-row {
+  display: flex;
+  gap: 10px;
+}
+
+select,
+input[type="number"],
+input[type="text"] {
+  padding: 10px;
+  font-size: 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  width: 100%;
+  outline: none;
+}
+
+button[type="submit"],
+.save-btn {
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button[type="submit"]:hover,
+.save-btn:hover {
+  background-color: #2563eb;
+}
+
+.output {
+  background-color: #f3f4f6;
+  padding: 15px;
+  border-radius: 10px;
+  border-left: 4px solid #3b82f6;
+  margin-bottom: 20px;
+}
+
+.output h3 {
+  margin-bottom: 5px;
+  color: #1f2937;
+}
+
+/* Saved chats */
+.saved-chats {
+  background-color: #f9fafb;
+  padding: 15px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.saved-chats h3 {
+  margin-bottom: 10px;
+}
+
+.saved-chats ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.saved-chats li {
+  background: #e5e7eb;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+}
+
+/* Settings panel */
+.settings-panel {
+  background-color: #f9fafb;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+  border: 1px solid #e5e7eb;
+}
+
+.settings-panel h3 {
+  margin-bottom: 10px;
+}
+
+.settings-panel input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  font-size: 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.settings-panel button {
+  padding: 10px 15px;
+  font-size: 14px;
+  border-radius: 8px;
+  margin-right: 10px;
+  cursor: pointer;
+  border: none;
+  transition: background 0.2s;
+}
+
+.settings-panel button:hover {
+  opacity: 0.9;
+}
+
+.settings-panel .delete-btn {
+  background-color: #ef4444;
+  color: white;
+}
+
+.settings-panel .delete-btn:hover {
+  background-color: #dc2626;
+}
+
+/* Hide utility */
+.hidden {
+  display: none;
+}
+
+/* Scrollbars */
+.chat-area::-webkit-scrollbar {
+  width: 8px;
+}
+
+.chat-area::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 10px;
+}
